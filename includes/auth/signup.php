@@ -33,7 +33,7 @@ if ( empty($name) || empty($email) || empty($password) || empty($confirm_passwor
     $user = $query -> fetch(); //return the first row starting from the query
 
     if ( $user ) {
-        setError("This email is already registered in our database", "/signup");
+        setError("The email provided is already registered in our database", "/signup");
     } else {
         //create a user account
         $sql = "INSERT INTO users (`name`, `email`, `password`) VALUES (:name, :email, :password)";
@@ -47,6 +47,8 @@ if ( empty($name) || empty($email) || empty($password) || empty($confirm_passwor
             'email' => $email,
             'password' => password_hash($password, PASSWORD_DEFAULT) //password is hashed
         ]);
+
+        $_SESSION["success"] = "Account has been created successfully.";
 
         header("Location: /login");
         exit;

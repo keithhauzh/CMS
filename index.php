@@ -4,11 +4,15 @@ session_start();
 
 $path = $_SERVER['REQUEST_URI']; 
 
+//remove all the query string from the URL
+$path = parse_url ($path, PHP_URL_PATH);
+
+
 // to get the functions working on index (importing functions page)
 require "includes/functions.php";
 
-switch ($path) {
 
+switch ($path) {
   // pages
   case '/dashboard':
     require 'pages/dashboard.php';
@@ -34,6 +38,9 @@ switch ($path) {
   case '/manage-users-edit' :
     require 'pages/manage-users-edit.php';
     break;
+  case '/manage-users-changepwd' :
+    require 'pages/manage-users-changepwd.php';
+    break;
   case '/manage-users' :
     require 'pages/manage-users.php';
     break;
@@ -53,6 +60,27 @@ switch ($path) {
     break;
   case '/auth/logout':
     require 'includes/auth/logout.php';
+    break;
+  case '/user/add':
+    require 'includes/user/add.php';
+    break;
+  case '/user/delete':
+    require 'includes/user/delete.php';
+    break;
+  case '/user/edit':
+    require 'includes/user/edit.php';
+    break;
+  case '/user/changepwd':
+    require 'includes/user/changepwd.php';
+    break;
+  case '/post/add':
+    require 'includes/post/add.php';
+    break;
+  case '/post/delete':
+    require 'includes/post/delete.php';
+    break;
+  case '/post/edit':
+    require 'includes/post/edit.php';
     break;
 
   // defaults to home if path cannot be found

@@ -23,3 +23,37 @@
         header("Location: " . $redirect);
         exit;
     }
+
+    //check if user is logged in
+    function checkIfUserIsNotLoggedIn () {
+            if ( !isset ( $_SESSION['loggeduser'])){
+                header("Location: /login");
+                exit;
+        }
+    }
+
+    //check if current user is an admin or not
+    function checkIfIsAdmin () {
+            if ( isset ( $_SESSION['loggeduser'] ) 
+            && 
+            $_SESSION['loggeduser']['role'] !== 'admin') {
+                header("Location: /dashboard");
+                exit;
+        }
+    }
+
+    //check if current user is an editor and admin or not
+    function checkIfIsEditorAdmin () {
+        if ( 
+            (isset ($_SESSION['loggeduser']))
+            &&
+            ($_SESSION['loggeduser']['role'] !== 'editor') 
+            &&
+            ($_SESSION['loggeduser']['role'] !== 'admin')
+        ) {
+            header("Location: /dashboard");
+            exit;
+        }
+    }
+
+    

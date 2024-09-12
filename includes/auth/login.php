@@ -32,14 +32,17 @@ if ( empty($email) || empty($password) ) {
             //login the user
             $_SESSION['loggeduser'] = $user;
 
+            //display success message
+            $_SESSION['success'] = 'Login successful! Have fun!';
+
             //redirect to home page (dashboard)
-            header("Location:/");
+            header("Location:/dashboard");
             exit;
         } else {
             setError("Your password is incorrect.", "/login");
         }
     } else {
-        setError("This email is not registered in our database.", "/login");
+        setError("The email provided is not registered in our database.", "/login");
     }
 }
 
