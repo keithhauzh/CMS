@@ -18,7 +18,7 @@
        'user_id' => $_SESSION['loggeduser']['id'] 
       ]);
     $posts = $query -> fetchAll();
-  }
+  } 
 
   require 'parts/header.php' 
  
